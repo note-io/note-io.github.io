@@ -225,9 +225,8 @@ select {
         width: 35vh;
     }
     .edit_block {
-        width: 40vh;
         height: 50vh;
-        min-width: 1vh;
+        min-width: 40vh;
     }
 }
 
