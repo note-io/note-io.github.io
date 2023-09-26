@@ -29,6 +29,20 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
 
+const tagsToReplace = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;'
+};
+
+function replaceTag(tag) {
+    return tagsToReplace[tag] || tag;
+}
+
+function escapeHTML(str) {
+    return str.replace(/[&<>]/g, replaceTag);
+}
+
 function showDisplay() { display.classList.remove('hidden') }
 function hideDisplay() { display.classList.add('hidden') }
 
@@ -91,7 +105,7 @@ function getNotes(animation) {
                 <p><i class="fas fa-calendar-alt"></i> ${note.date}</p>
             </div>
             <div class="note_text">
-                <p>${note.text}</p>
+                <p>${escapeHTML(note.text)}</p>
             </div>
             <div class="note_controls">
                 <button class="note_edit" onclick="startEditNote('${note.id}')"><i class="fas fa-edit"></i></button>
